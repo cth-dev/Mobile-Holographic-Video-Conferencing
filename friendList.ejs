@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/js/uikit-icons.min.js"></script>
+    <style>
+        .head {
+            /*background-color: rgb(204, 204, 204);*/
+            height: 70px;
+            width: 100%;
+        }
+        .list{
+            max-height:80%;
+            width: 100%;
+            overflow-y: auto;
+        }
+        .bottom {
+            position:absolute;
+            top:95%;
+            height:5%;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            margin: 80px 0 5px 0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            background: rgb(219, 219, 219);
+        }
+    </style>
+</head>
+
+<body style="height: 100%; margin: 10px;padding: 0;">
+    <div class="head">
+        <div class="heading uk-flex-around uk-flex">
+            <span class="uk-width-expand uk-heading-small">Friends List</span>
+            
+            <button class="uk-button uk-button-default uk-margin-small-right" uk-navbar-toggle-icon type="button" uk-toggle="target: #offcanvas-push"></button>
+            <hr>
+        </div>
+    </div>
+    <div id="offcanvas-push" uk-offcanvas="mode: push; overlay: true">
+        <div class="uk-offcanvas-bar">
+    
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+    
+            <h3>Function</h3>
+            <p>
+                <ul class="uk-list">
+                    <li>Friend list</li>
+                    <li>Call Record</li>
+                    <li>Logout</li>
+                </ul>
+            </p>
+            
+        </div>
+    </div>
+    <div class="list">
+        <ul class="uk-list uk-list-divider">
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item 3</li>
+            <li>List item last</li>
+        </ul>
+    </div>
+    
+</body>
+
+</html>

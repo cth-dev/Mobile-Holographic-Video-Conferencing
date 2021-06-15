@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="js/tfjs@1.0.0.js"></script>
+    <link href="./node_modules/video.js/dist/video-js.min.css" rel="stylesheet">
+    <script src="./node_modules/video.js/dist/video.min.js"></script>
+    <script src="./js/easytimer.min.js"></script>
+    <!--maybe in server -->
+    <script src="./node_modules/videojs-record/dist/videojs.record.js"></script>
+    <script src="js/body-pix@1.0.0.js"></script>
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/css/uikit.min.css" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/js/uikit-icons.min.js"></script>
+
+    <style>
+        .head {
+            /*background-color: rgb(204, 204, 204);*/
+            height: 70px;
+            width: 100%;
+        }
+
+        .list {
+            max-height: 80%;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .bottom {
+            position: absolute;
+            top: 95%;
+            height: 5%;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            margin: 80px 0 5px 0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            background: rgb(219, 219, 219);
+        }
+
+        .callingPage {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color:white;
+        }
+        .btn-li{
+            cursor: pointer;
+        }
+        .content {
+            /* position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%); */
+            text-align: center;
+            justify-content: space-around;
+            height: 100%;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .img-cutline {
+            max-height: 150px;
+            max-width: 150px;
+            height: auto;
+            width: 20%;
+        }
+
+        .img-icon {
+            max-height: 350px;
+            max-width: 350px;
+            height: auto;
+            width: 50%;
+        }
+
+        .img-cutline:hover {
+            -webkit-filter: brightness(150%);
+        }
+    </style>
+</head>
+
+<body style="height: 100%; margin: 10px;padding: 0;">
+    <div id="div-friend">
+        <div class="head">
+            <div class="heading uk-flex-around uk-flex">
+                <span class="uk-width-expand uk-heading-small">Friend List</span>
+
+                <button class="uk-button uk-button-default uk-margin-small-right" uk-navbar-toggle-icon type="button"
+                    uk-toggle="target: #offcanvas-push"></button>
+                <hr>
+            </div>
+        </div>
+
+        <div class="list">
+            <table class="uk-table uk-table-divider" id="friend-list">
+                <tr>
+                    <td>Friend</td>
+                    <td>Status</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="div-record" style="display: none;">
+        <div class="head">
+            <div class="heading uk-flex-around uk-flex">
+                <span class="uk-width-expand uk-heading-small">Call Record</span>
+
+                <button class="uk-button uk-button-default uk-margin-small-right" uk-navbar-toggle-icon type="button"
+                    uk-toggle="target: #offcanvas-push"></button>
+                <hr>
+            </div>
+        </div>
+
+        <div class="list">
+            <table class="uk-table uk-table-divider" id="record-list">
+                <tr>
+                    <td>Friend</td>
+                    <td>Length</td>
+                    <td>Start Time</td>
+                    <td>Record</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="offcanvas-push" uk-offcanvas="mode: push; overlay: true">
+        <div class="uk-offcanvas-bar">
+
+            <button id="offcanvas-close-1" class="uk-offcanvas-close" type="button" uk-close></button>
+
+            <h3>Function</h3>
+            <p>
+                <ul class="uk-list">
+                    <li class="btn-li" id="btn-fl">Friend list</li>
+                    <li class="btn-li" id="btn-cr">Call Record</li>
+                    <li class="btn-li" onclick="$('#logoutForm').submit()">Logout</li>
+                    <form id="logoutForm" action="logout" method="post">
+                        <input type="hidden" name="logout" value="1">
+                    </form>
+                </ul>
+            </p>
+
+        </div>
+    </div>
+    <div id="callingPage" class="callingPage">
+        <div class="content">
+            <img class="img-icon" src="img/account.png" alt="">
+            <div>
+                <div id="calling-name" class="uk-heading-small"></div>
+                <div id="basicUsage">timer:00:00:00</div>
+            </div>
+            <img onclick ="cutline();"class="img-cutline" src="img/call.png" alt="">
+
+        </div>
+    </div>
+    <video id="localVideo" autoplay playsinline style="
+  transform: scaleX(-1); display: none;" muted></video>
+    <canvas id='segment' style="display:none;"></canvas>
+
+    <video id="remoteVideo" autoplay playsinline style="
+  transform: scaleX(-1); display: none;" muted></video>
+    <canvas id="segment2" style=" display:none;position:absolute;top:100px;left:600px;height: 180px;" width="320"
+        height="180" top="100" left="20"></canvas>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var room = "";
+    room = <%= room %>;
+</script>
+<script src="js/index2.js"></script>
+
+</html>

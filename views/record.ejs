@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="js/tfjs@1.0.0.js"></script>
+    <link href="./node_modules/video.js/dist/video-js.min.css" rel="stylesheet">
+    <script src="./node_modules/video.js/dist/video.min.js"></script>
+
+    <script src="./node_modules/videojs-record/dist/videojs.record.js"></script>
+    <script src="js/body-pix@1.0.0.js"></script>
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.2/dist/js/uikit-icons.min.js"></script>
+    <meta charset="UTF-8">
+    <title>record</title>
+</head>
+
+<body style=" height: 830px; background-color: black;">
+
+    <video id="recordVideo"  playsinline style="
+ display: none;"  width="500" height="500">
+        <source src="uploads/<%=videoId%>" type="video/webm">
+
+    </video>
+    <h3 style="color: aliceblue; margin-top: 0px;">videoList</h3>
+    <div id="videoList"></div>
+    
+    <div id="videoDetail">   </div>
+
+    <canvas id="segment" style="position:absolute;top:100px;left:600px;transform:rotate(180deg);height: 180px; " width="320" height="180" top="100" left="20"></canvas>
+    <canvas id="segment2" style="position:absolute;top:350px;left:850px;transform:rotate(270deg);height: 180px;" width="320" height="180"></canvas>
+    <canvas id="segment3" style="position:absolute;top:350px;left:350px;transform:rotate(90deg);height: 180px;" width="320" height="180"></canvas>
+    <canvas id="segment4" style="position:absolute;top: 600px;left: 600px;height: 180px;" width="320" height="180"></canvas>
+
+    <button onclick="playVid()" type="button">Play Video</button>
+    <button onclick="pauseVid()" type="button">Pause Video</button>
+
+
+    <br>
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var videoId = "<%= videoId %>";
+</script>
+<script src="js/record.js"></script>
+
+</html>

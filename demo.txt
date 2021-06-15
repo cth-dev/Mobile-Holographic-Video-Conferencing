@@ -1,0 +1,5 @@
+open two index.html room name a and b
+
+open two get.html room aDisplay and bDisplay
+
+a room name index.html will have button to connect b.
