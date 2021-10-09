@@ -27,8 +27,8 @@ var pcConfig = {
     {urls: "stun:stun.l.google.com:19302"},
       {
     'urls': 'turn:numb.viagenie.ca',
-    'credential':'pct466655',
-    'username':'corsair123123@gmail.com'}]
+    'credential':'',
+    'username':''}]
 };
 
 // Set up audio and video regardless of what devices are present.
