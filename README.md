@@ -36,8 +36,8 @@ Receiver will be notify by any video call invitation.
 
 ![image](https://user-images.githubusercontent.com/43875433/122035748-60419080-ce05-11eb-8496-1cc339f6c83d.jpeg)
 
-![image](https://user-images.githubusercontent.com/43875433/122036343-0a211d00-ce06-11eb-86f9-65168d043cb6.jpeg)
-
+<!-- ![image](https://user-images.githubusercontent.com/43875433/122036343-0a211d00-ce06-11eb-86f9-65168d043cb6.jpeg)
+ -->
 # Hardware Components
 
 ![image](https://user-images.githubusercontent.com/43875433/122035956-9b43c400-ce05-11eb-9320-a532b141575f.jpeg)
